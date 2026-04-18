@@ -1,160 +1,206 @@
-6<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة التحميل | 😈HAKERAHMED😈</title>
+    <title>VIP DOWNLOAD | 😈HAKERAHMED😈</title>
     <style>
         :root {
             --neon-green: #00ff41;
             --neon-blue: #00d4ff;
-            --hacker-red: #ff0000;
-            --dark-void: #020202;
+            --dark-bg: #050505;
         }
 
-        body {
-            background-color: var(--dark-void);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background-color: var(--dark-bg);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        /* خلفية الرموز المتحركة */
+        canvas {
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 1;
+        }
+
+        /* اسمك العائم في الخلفية */
+        .bg-name {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            white-space: nowrap;
+            z-index: 2;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: radial-gradient(circle at center, #001a1a 0%, #020202 100%);
-            overflow: hidden;
         }
 
-        /* توقيع خلفي شفاف للفخامة */
-        body::after {
-            content: "HAKER AHMED";
-            position: absolute;
-            font-size: 15vw;
-            color: rgba(0, 255, 65, 0.03);
-            z-index: -1;
-            font-weight: 900;
-            white-space: nowrap;
-        }
-
-        .container {
+        .glass-card {
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 25px;
+            padding: 40px;
             width: 90%;
             max-width: 450px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 2px solid var(--neon-blue);
-            border-radius: 20px;
-            padding: 30px;
             text-align: center;
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
-            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            animation: cardFloat 3s ease-in-out infinite;
         }
 
-        .container::before {
-            content: "";
-            position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 25px;
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
-            z-index: -1;
-            opacity: 0.3;
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        .hacker-identity {
-            font-size: 1.1rem;
+        .hacker-logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px var(--neon-green));
+        }
+
+        .identity-text {
             color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green);
-            margin-bottom: 15px;
             font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-green);
+            margin-bottom: 10px;
         }
 
-        .app-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px var(--neon-blue));
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-            color: #fff;
-        }
-
+        h2 { color: #fff; font-size: 1.8rem; margin: 15px 0; }
+        
         .description {
-            color: #aaa;
-            font-size: 0.9rem;
+            color: #ccc;
+            font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .btn-download {
             display: block;
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(90deg, #004d1a, #006622);
-            color: white;
-            text-align: center;
+            padding: 18px;
+            background: linear-gradient(45deg, #004d1a, #001a1a);
+            color: var(--neon-green);
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
             transition: 0.4s;
-            border: 1px solid var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 65, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
         }
 
         .btn-download:hover {
             background: var(--neon-green);
-            color: black;
-            box-shadow: 0 0 30px var(--neon-green);
+            color: #000;
             transform: scale(1.05);
+            box-shadow: 0 0 40px var(--neon-green);
         }
 
         .footer-nav {
-            margin-top: 30px;
-            border-top: 1px solid #222;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
         }
 
-        .back-home {
+        .back-link {
             color: var(--neon-blue);
             text-decoration: none;
-            font-size: 0.85rem;
-            opacity: 0.7;
-            transition: 0.3s;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
-        .back-home:hover { opacity: 1; text-decoration: underline; }
-
-        .rights {
-            margin-top: 15px;
+        .rights-box {
             font-size: 0.7rem;
-            color: #444;
-            letter-spacing: 1px;
+            color: #555;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="hacker-identity">🕸 حاكم المجال البرنس حمودي 🕸</div>
-        
-        <div class="تزويد فولو انستا🖤'!.apk">📦</div>
-        
-        <h2>تحميل الأداة المطلوبة ☠️</h2>
-        <p class="description">
-            أنت الآن في القبو الرقمي الخاص بـ 😈HAKERAHMED😈.<br>
-            هذا الملف مفحوص وآمن 100% للاستخدام.
-        </p>
+    <div class="bg-name">HAKER AHMED</div>
+    <canvas id="matrixCanvas"></canvas>
 
-        <a href="تزويد فولو انستا🖤'!.apk" class="btn-download">بدء التحميل المباشر 📥</a>
+    <div class="main-wrapper">
+        <div class="glass-card">
+            <div class="identity-text">🕸 حاكم المجال البرنس حمودي 🕸</div>
+            <div class="hacker-logo">☠️</div>
+            
+            <h2>أداة تزويد المتابعين 🖤</h2>
+            <p class="description">
+                أنت الآن تستخدم تقنية 2026 الحصرية.<br>
+                تم تأمين هذا الرابط من قبل 😈HAKERAHMED😈.
+            </p>
 
-        <div class="footer-nav">
-            <a href="../" class="back-home">🔙 العودة للرئيسية</a>
-            <div class="rights">
-                𓅓𓆪الــكــᬼنــ☠️ــج⑅⃝🇾🇪حمــــ͢ـ℘ــ͢ــو٘ډي٘𓆩𓅓<br>
-                SECURED SYSTEM v2.0
+            <a href="تزويد فولو انستا🖤'!.apk" class="btn-download">START DOWNLOAD 📥</a>
+
+            <div class="footer-nav">
+                <a href="../" class="back-link">🔙 العودة للديوان الرئيسي</a>
+                <div class="rights-box">
+                    𓅓𓆪الــكــᬼنــ☠️ــج⑅⃝🇾🇪حمــــ͢ـ℘ــ͢ــو٘ډي٘𓆩𓅓<br>
+                    © ALL RIGHTS RESERVED
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00ff41";
+            ctx.font = fontSize + "px arial";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
 
 </body>
 </html>
