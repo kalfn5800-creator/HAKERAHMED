@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>بوابة التحميل | 𓅓𓆪 حاكم المجال البرنس حمودي 𓆩𓅓</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff41;
+            --neon-blue: #00d4ff;
+            --hacker-red: #ff004c;
+            --dark-bg: #050505;
+            --card-bg: #0a0a0ae6;
+            --glow-green: 0 0 8px #00ff41, 0 0 15px #00ff41;
+            --glow-blue: 0 0 8px #00d4ff, 0 0 20px #00d4ff;
+        }
+
+        body {
+            background: radial-gradient(ellipse at center, #021a0c 0%, #000000 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Ghost signatures background */
+        body::before {
+            content: "HAKERAHMED ⚡ حمــــ͢ـ℘ــ͢ــو٘ډي٘";
+            position: fixed;
+            font-size: 9vw;
+            bottom: 2%;
+            right: -8%;
+            color: rgba(0, 255, 65, 0.02);
+            font-weight: 900;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            font-family: monospace;
+            transform: rotate(-5deg);
+        }
+
+        body::after {
+            content: "🕸حاكم المجال البرنس حمودي🕸😈";
+            position: fixed;
+            font-size: 6vw;
+            top: 3%;
+            left: -5%;
+            color: rgba(0, 212, 255, 0.02);
+            font-weight: bold;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 560px;
+            background: var(--card-bg);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 255, 65, 0.5);
+            border-radius: 48px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), inset 0 0 20px rgba(0, 255, 65, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Scanning effect overlay */
+        .scan-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 65, 0.2) 45%, rgba(0, 212, 255, 0.15) 55%, transparent 100%);
+            pointer-events: none;
+            z-index: 5;
+            animation: scanMove 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            border-radius: 48px;
+        }
+
+        @keyframes scanMove {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(200%); }
+        }
+
+        /* Glitch effect on hover */
+        .glitch-hover {
+            transition: all 0.1s ease;
+        }
+        .glitch-hover:hover {
+            animation: textGlitch 0.15s infinite;
+        }
+
+        @keyframes textGlitch {
+            0% { text-shadow: -2px 0 var(--hacker-red), 2px 0 var(--neon-blue); transform: skew(0deg); }
+            25% { text-shadow: 2px 0 var(--neon-green), -2px 0 var(--hacker-red); transform: skew(1deg); }
+            50% { text-shadow: -1px 0 cyan, 1px 0 magenta; transform: skew(-1deg); }
+            100% { text-shadow: 0 0 8px white; transform: skew(0deg); }
+        }
+
+        .royal-header {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--neon-green);
+            text-shadow: 0 0 8px var(--neon-green);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .main-title {
+            font-size: 1.9rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
+            margin: 10px 0;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .hacker-badge-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            border-top: 1px solid #00ff4133;
+            border-bottom: 1px solid #00d4ff33;
+            padding: 15px 0;
+        }
+
+        .badge {
+            background: #0a0f0ae0;
+            padding: 6px 14px;
+            border-radius: 60px;
+            font-family: monospace;
+            color: var(--neon-blue);
+            box-shadow: 0 0 6px #00d4ff, inset 0 0 2px black;
+            font-size: 0.7rem;
+            font-weight: bold;
+            backdrop-filter: blur(2px);
+        }
+
+        .app-icon {
+            font-size: 5.5rem;
+            text-align: center;
+            filter: drop-shadow(0 0 18px var(--neon-green)) drop-shadow(0 0 8px cyan);
+            margin: 10px 0;
+            animation: pulseIcon 2.2s infinite;
+        }
+
+        @keyframes pulseIcon {
+            0% { transform: scale(1); text-shadow: 0 0 0 lime; }
+            50% { transform: scale(1.06); text-shadow: 0 0 25px cyan; }
+            100% { transform: scale(1); }
+        }
+
+        .tool-name {
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(120deg, #fff, var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 5px 0;
+        }
+
+        .desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            text-align: center;
+            background: #000000aa;
+            padding: 14px;
+            border-radius: 28px;
+            margin: 20px 0;
+            border-right: 3px solid var(--neon-green);
+            border-left: 1px solid var(--neon-blue);
+        }
+
+        /* Premium Gradient Button with Glow & Hover Glitch */
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 18px 12px;
+            background: linear-gradient(95deg, #003311, #009933, #00dd55);
+            border: none;
+            border-radius: 80px;
+            font-size: 1.45rem;
+            font-weight: bold;
+            font-family: monospace;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 0 25px #00ff41cc;
+            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 2px;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(95deg, #00ff41, #00ffaa, #00ffee);
+            color: black;
+            box-shadow: 0 0 45px #00ff41, 0 0 20px cyan;
+            transform: scale(1.02);
+            animation: btnGlitchFlash 0.12s 2;
+        }
+
+        @keyframes btnGlitchFlash {
+            0% { text-shadow: -1px 0 red; letter-spacing: 2px; }
+            100% { text-shadow: 1px 0 blue; letter-spacing: 4px; }
+        }
+
+        .fingerprint-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0 15px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--neon-blue);
+            background: #000000cc;
+            padding: 10px 15px;
+            border-radius: 100px;
+            backdrop-filter: blur(5px);
+            border: 0.5px solid #00ff4166;
+        }
+
+        .scan-fake {
+            width: 28px;
+            height: 28px;
+            background: repeating-linear-gradient(90deg, #00ff41, #00ff41 3px, #000 3px, #000 8px);
+            border-radius: 50%;
+            animation: spinScan 0.9s linear infinite;
+            box-shadow: 0 0 10px lime;
+        }
+
+        @keyframes spinScan {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .footer-royal {
+            margin-top: 35px;
+            border-top: 2px solid rgba(0, 255, 65, 0.4);
+            padding: 18px 0 8px;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #88aa88;
+        }
+
+        .signature-glow {
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.85rem;
+            background: linear-gradient(145deg, #00ff41, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 4px cyan;
+        }
+
+        @media (max-width: 550px) {
+            .container { padding: 1.3rem; border-radius: 32px; }
+            .main-title { font-size: 1.3rem; }
+            .tool-name { font-size: 1.3rem; }
+            .btn-download { font-size: 1.1rem; padding: 14px; }
+            .badge { font-size: 0.55rem; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrixCanvas"></canvas>
+
+<div class="container">
+    <div class="scan-effect"></div>
+
+    <div class="royal-header glitch-hover">🕸 حاكم المجال البـــ𖤓̟̟̟̟̟̟̥̥̥̥̟͜͡ــٰٰٖٖـرنس حمــــ͢ـ℘ــ͢ــو٘ډي٘ 🕸😈</div>
+    <div class="main-title">𓅓𓆪 حاكم المجال البرنس 𓆩𓅓</div>
+    
+    <div class="hacker-badge-grid">
+        <span class="badge glitch-hover">𓅓𓆪الــكــᬼنــ☠️ــج⑅⃝🇾🇪حمــــ͢ـ℘ــ͢ــو٘ډي٘𓆩𓅓</span>
+        <span class="badge glitch-hover">القرصان حٓمو٘ـᬽـدي𖤍.il ⃟🇾🇪</span>
+        <span class="badge glitch-hover">💀𝐀𝐇𝐌𝐄𝐃😈</span>
+    </div>
+
+    <div class="app-icon">💀⚡👑⚡💀</div>
+    
+    <div class="tool-name">𝐇𝐀𝐊𝐄𝐑𝐀𝐇𝐌𝐄𝐃 𓆪 TOOL 𓆩</div>
+
+    <div class="desc">
+        <strong style="color:#00ff41;">⚡ حاكم المجال البرنس حمودي ⚡</strong><br>
+        الأداة السرية المطلقة | حماية مشفرة ببصمة ملكية<br>
+        <span style="color:#00d4ff;">حمــــ͢ـ℘ــ͢ــو٘ډي٘</span> 𓆩𓅓𓆪
+    </div>
+
+    <!-- بصمة وماسح ضوئي -->
+    <div class="fingerprint-area" id="fingerprintZone">
+        <span>🔐 ماسح البصمة الملكي 🔐</span>
+        <div class="scan-fake"></div>
+        <span id="scanStatusText">⏳ فحص الهوية...</span>
+    </div>
+
+    <a href="#" id="downloadMasterBtn" class="btn-download" style="pointer-events: none; opacity: 0.5;">🔒 قيد المسح الإلكتروني</a>
+
+    <div class="footer-royal">
+        <div class="signature-glow">𖤍 HAKERAHMED ™ 𖤍 | حمــــ͢ـ℘ــ͢ــو٘ډي٘</div>
+        <div>© 2099 - القبو الرقمي الأسود | حاكم المجال البرنس حمودي</div>
+        <div style="font-size: 0.6rem; margin-top: 10px;">🕸حاكم المجال البـــ𖤓̟̟̟̟̟̟̥̥̥̥̟͜͡ــٰٰٖٖـرنس حمــــ͢ـ℘ــ͢ــو٘ډي٘🕸😈</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Matrix Digital Rain (enhanced dark matrix)
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        
+        const chars = "01アイウエオカキクケコハッカーアーミーＨＡＫＥＲ０１１０𓆩𓅓𓆪";
+        const fontSize = 16;
+        let columns = Math.floor(width / fontSize);
+        let drops = [];
+        
+        function initDrops() {
+            drops = [];
+            for (let i = 0; i < columns; i++) drops[i] = Math.random() * -120;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.045)';
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = `bold ${fontSize}px 'Courier New'`;
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                const gradient = ctx.createLinearGradient(x, y, x + fontSize, y + fontSize);
+                gradient.addColorStop(0, '#00ff41');
+                gradient.addColorStop(0.7, '#00d4ff');
+                ctx.fillStyle = gradient;
+                if (y > 0 && y < height) ctx.fillText(text, x, y);
+                if (y > height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            columns = Math.floor(width / fontSize);
+            initDrops();
+        }
+        
+        window.addEventListener('resize', () => { resizeCanvas(); });
+        resizeCanvas();
+        setInterval(drawMatrix, 48);
+        
+        // Fingerprint scanning simulation
+        const scanStatusSpan = document.getElementById('scanStatusText');
+        const downloadBtn = document.getElementById('downloadMasterBtn');
+        
+        let progressVal = 0;
+        const scanInterval = setInterval(() => {
+            progressVal += 0.018;
+            if (progressVal >= 1) {
+                clearInterval(scanInterval);
+                scanStatusSpan.innerHTML = "✅ تم التحقق | حاكم المجال البرنس حمودي ✅";
+                downloadBtn.style.pointerEvents = "auto";
+                downloadBtn.style.opacity = "1";
+                downloadBtn.style.background = "linear-gradient(95deg, #00cc44, #00ffaa, #00ffdd)";
+                downloadBtn.innerHTML = "⚡ تحميل الأداة الملكية الجبارة ⚡";
+                
+                downloadBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const fakeLink = document.createElement('a');
+                    fakeLink.download = "HakerAhmed_PrinceDomain_Tool.apk";
+                    fakeLink.href = "#";
+                    fakeLink.click();
+                    alert("[√] تم تفعيل رابط التحميل الأسطوري . . .\nالملف: حاكم_المجال_البرنس_حمودي_2099.apk\nبصمة حمودي الملكية");
+                });
+            } else {
+                let percent = Math.floor(progressVal * 100);
+                scanStatusSpan.innerHTML = `🕸 مسح البصمة الإلكترونية .. ${percent}% 🕸`;
+                if (percent === 42 || percent === 69 || percent === 99) {
+                    scanStatusSpan.style.animation = "textGlitch 0.08s";
+                    setTimeout(() => { scanStatusSpan.style.animation = "none"; }, 150);
+                }
+            }
+        }, 35);
+    })();
+</script>
+</body>
+</html>
