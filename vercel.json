@@ -9,10 +9,16 @@
         },
         {
           "key": "Content-Disposition",
-          "value": "attachment; filename=$1.apk"
+          "value": "attachment"
         }
       ]
     }
   ],
-  "cleanUrls": true
+  "routes": [
+    {
+      "src": "/(.*).apk",
+      "dest": "/$1.apk",
+      "methods": ["GET"]
+    }
+  ]
 }
