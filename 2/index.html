@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>بوابة التحميل | 😈 HAKER AHMED - حاكم المجال 😈</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff41;
+            --neon-blue: #00d4ff;
+            --hacker-red: #ff0000;
+            --dark-bg: #050b0b;
+            --card-bg: rgba(8, 12, 15, 0.85);
+            --glow-green: 0 0 12px #00ff41;
+            --glow-blue: 0 0 12px #00d4ff;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Cairo', 'Segoe UI', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ---------- خلفية المصفوفة (Matrix) المتحركة ---------- */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* توقيع خلفي شفاف */
+        .bg-watermark {
+            position: fixed;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #00ff4115;
+            z-index: 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: monospace;
+            pointer-events: none;
+        }
+
+        /* الكارد الرئيسي الملكي */
+        .premium-card {
+            position: relative;
+            z-index: 10;
+            max-width: 520px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border-radius: 48px;
+            padding: 28px 24px 36px;
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 20px rgba(0, 255, 65, 0.2);
+            transition: 0.3s;
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50px;
+            background: linear-gradient(125deg, #00ff41, #00d4ff, #00ff41);
+            z-index: -1;
+            opacity: 0.35;
+            transition: 0.4s;
+        }
+
+        .premium-card:hover::before {
+            opacity: 0.8;
+        }
+
+        /* الألقاب الملكية */
+        .royal-signature {
+            text-align: center;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 12px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+            border-right: 3px solid var(--neon-green);
+            border-left: 3px solid var(--neon-blue);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .glitch-text {
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .glitch-text:hover {
+            animation: glitchEffect 0.25s ease-in-out infinite;
+        }
+
+        @keyframes glitchEffect {
+            0% { text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9; transform: skew(0deg);}
+            25% { text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9; transform: skew(1deg);}
+            50% { text-shadow: -1px 0 #ff00c1, 1px 0 #00fff9; transform: skew(-1deg);}
+            100% { text-shadow: 0px 0 #ff00c1, 0px 0 #00fff9; transform: skew(0deg);}
+        }
+
+        /* الماسح الضوئي الوهمي */
+        .scanner-area {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .scan-beam {
+            width: 70%;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+            animation: scanMove 2.2s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            border-radius: 5px;
+        }
+        @keyframes scanMove {
+            0% { transform: translateY(-20px); width: 30%; opacity: 0.3;}
+            40% { width: 85%; opacity: 1;}
+            80% { width: 85%; opacity: 0.9;}
+            100% { transform: translateY(25px); width: 20%; opacity: 0;}
+        }
+        .scan-label {
+            font-size: 0.65rem;
+            color: #0cf;
+            background: #000000aa;
+            padding: 4px 12px;
+            border-radius: 40px;
+            margin-top: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        /* أيقونة التطبيق */
+        .app-icon {
+            text-align: center;
+            font-size: 4.5rem;
+            filter: drop-shadow(0 0 12px #0cf) drop-shadow(0 0 5px #0f0);
+            margin: 5px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #fff, var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 15px 0 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #ccf4e6;
+            font-size: 0.85rem;
+            background: #001a1a60;
+            padding: 12px;
+            border-radius: 36px;
+            margin-bottom: 20px;
+            border: 0.5px solid #00d4ff60;
+        }
+
+        /* زر التحميل العملاق */
+        .giant-download {
+            display: block;
+            width: 100%;
+            padding: 18px 12px;
+            background: linear-gradient(95deg, #003d1a, #00994d);
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: 0.25s;
+            box-shadow: 0 0 18px #00ff4160;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .giant-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .giant-download:hover::before {
+            left: 100%;
+        }
+
+        .giant-download:hover {
+            background: linear-gradient(95deg, #00bb44, #00ff88);
+            color: black;
+            text-shadow: 0 0 5px black;
+            transform: scale(1.02);
+            box-shadow: 0 0 35px #00ff41;
+        }
+
+        /* الفوتر والتذييل الملكي */
+        .footer-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+            border-top: 1px solid #00d4ff30;
+            padding-top: 18px;
+            font-size: 0.7rem;
+        }
+        .back-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-shadow: 0 0 6px cyan;
+        }
+        .royal-footer {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #00ff4160;
+            margin-top: 20px;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 550px) {
+            .premium-card {
+                padding: 18px;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .giant-download {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="matrix-bg">
+    <canvas id="matrixCanvas"></canvas>
+</div>
+<div class="bg-watermark">⚡ 𓅓𓆪 حاكم المجال البرنس حمودي 𓆩𓅓 ⚡</div>
+
+<div class="premium-card">
+    <!-- كل الألقاب الملكية -->
+    <div class="royal-signature">
+        <span class="glitch-text">🕸 حاكم المجال البـــ𖤓̟̟̟̟̟̟̥̥̥̥̟͜͡ــٰٰٖٖـرنس حمــــ͢ـ℘ــ͢ــو٘ډي٘ 🕸😈</span>
+    </div>
+    <div class="royal-signature" style="font-size:0.75rem;">
+        💀 𝐇𝐀𝐊𝐄𝐑 𝐀𝐇𝐌𝐄𝐃 😈 | القرصان حٓمو٘ـᬽـدي𖤍.il ⃟🇾🇪 | 𓅓𓆪 الــكــᬼنــ☠️ــج ⑅⃝🇾🇪 حمــــ͢ـ℘ــ͢ــو٘ډي٘ 𓆩𓅓
+    </div>
+
+    <!-- تأثير الماسح الضوئي -->
+    <div class="scanner-area">
+        <div class="scan-beam"></div>
+        <div class="scan-label">🔍 [ FINGERPRINT SCAN ] .. تجاوز الحماية ..</div>
+    </div>
+
+    <div class="app-icon">🔥📀🔥</div>
+    <h2 class="glitch-text">تحميل الأداة المطلوبة ☠️</h2>
+    <p class="description">
+        القبو الرقمي لـ <strong class="glitch-text">😈HAKERAHMED😈</strong><br>
+        هذا الملف معبأ بالطاقة الإلكترونية، مفحوص وآمن 100%.
+    </p>
+
+    <!-- زر التحميل الجبار -->
+    <a href="#" id="downloadLink" class="giant-download">
+        ⚡ بدء التحميل المباشر ⚡
+    </a>
+
+    <div class="footer-meta">
+        <a href="../" class="back-link">🔙 العودة للرئيسية</a>
+        <span style="color: #0cf;">⚡ تشفير عالي المستوى ⚡</span>
+    </div>
+    <div class="royal-footer">
+        🏴‍☠️ حمــــ͢ـ℘ــ͢ــو٘ډي٘ - حاكم المجال 𖤍 🇾🇪 <br>
+        جميع الحقوق محفوظة © 2026 - 2099 | نظام <strong>HAKER AHMED</strong> الذهبي
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ========= 1. خلفية المصفوفة المتطورة =========
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = "01アイウエオカキクケコABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*ﾊﾐﾔﾏﾗﾇﾝﾂﾃｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂ";
+        const charArray = chars.split("");
+        const fontSize = 14;
+        let columns = Math.floor(width / fontSize);
+        let drops = [];
+
+        function initDrops() {
+            columns = Math.floor(width / fontSize);
+            drops = [];
+            for(let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -100);
+            }
+        }
+        initDrops();
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = `bold ${fontSize}px monospace`;
+            for(let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                if(y > 0 && y < height) {
+                    const brightness = Math.random() * 0.7 + 0.3;
+                    ctx.fillStyle = `rgba(0, 255, 65, ${brightness})`;
+                    ctx.fillText(text, x, y);
+                }
+                if(y > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            requestAnimationFrame(drawMatrix);
+        }
+        drawMatrix();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initDrops();
+        });
+
+        // ========= 2. ربط رابط التحميل المباشر =========
+        // ضع هنا رابط ملف APK الخاص بك من GitHub Releases
+        const DIRECT_APK_URL = "https://github.com/kalfn5800-creator/HAKERAHMED/releases/download/v1.0/default.apk";
+        const downloadBtn = document.getElementById('downloadLink');
+        if(downloadBtn) {
+            downloadBtn.href = DIRECT_APK_URL;
+            downloadBtn.setAttribute('download', 'HAKERAHMED_GOLD.apk');
+        }
+
+        // تأثير وحشي في الكونسول
+        console.log("%c🔥 HAKER AHMED | DOMAIN KING | حاكم المجال البرنس حمودي 🔥", "color: #0f0; font-size: 14px; font-weight: bold;");
+        console.log("%cالقرصان اليمني الأسطورة | SYSTEM READY", "color: #0cf;");
+    })();
+</script>
+</body>
+</html>
