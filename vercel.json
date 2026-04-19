@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*).apk",
@@ -10,9 +9,10 @@
         },
         {
           "key": "Content-Disposition",
-          "value": "attachment"
+          "value": "attachment; filename=$1.apk"
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }
